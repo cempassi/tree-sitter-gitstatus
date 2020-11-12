@@ -1,5 +1,5 @@
 ====================
-Header branch oid
+Header branch oid sha1
 ====================
 
 # branch.oid 0000000000
@@ -8,5 +8,52 @@ Header branch oid
 
 (source_file
 	(header_definition
-		(header_branch
-			(branch_name) (sha1))))
+		(header_type 
+			(branch
+				(oid 
+					(data_oid (sha1)))))))
+
+====================
+Header branch oid initial
+====================
+
+# branch.oid (initial)
+
+---
+
+(source_file
+	(header_definition
+		(header_type 
+			(branch
+				(oid 
+					(data_oid))))))
+
+====================
+Header branch head branch_name
+====================
+
+# branch.head master
+
+---
+
+(source_file
+	(header_definition
+		(header_type 
+			(branch
+				(head 
+					(data_head (branch_name)))))))
+
+====================
+Header branch head detached
+====================
+
+# branch.head (detached)
+
+---
+
+(source_file
+	(header_definition
+		(header_type 
+			(branch
+				(head 
+					(data_head ))))))

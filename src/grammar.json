@@ -22,8 +22,12 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "STRING",
+          "value": "#"
+        },
+        {
           "type": "SYMBOL",
-          "name": "header_branch"
+          "name": "header_type"
         },
         {
           "type": "STRING",
@@ -31,96 +35,96 @@
         }
       ]
     },
-    "header_branch": {
+    "header_type": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "branch"
+        }
+      ]
+    },
+    "branch": {
       "type": "SEQ",
       "members": [
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "#[ \t]*branch"
-          },
-          "named": false,
-          "value": "#branch"
+          "type": "STRING",
+          "value": "branch"
         },
         {
           "type": "STRING",
           "value": "."
         },
         {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "branch_name"
-          }
-        },
-        {
-          "type": "FIELD",
-          "name": "value",
-          "content": {
-            "type": "SYMBOL",
-            "name": "sha1"
-          }
-        }
-      ]
-    },
-    "header_branch_oid": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "$oid"
-        },
-        {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "sha1"
+              "name": "oid"
             },
             {
-              "type": "STRING",
-              "value": "(initial)"
+              "type": "SYMBOL",
+              "name": "head"
             }
           ]
         }
       ]
     },
-    "branch_name": {
-      "type": "CHOICE",
+    "oid": {
+      "type": "SEQ",
       "members": [
         {
           "type": "STRING",
           "value": "oid"
         },
         {
+          "type": "SYMBOL",
+          "name": "data_oid"
+        }
+      ]
+    },
+    "head": {
+      "type": "SEQ",
+      "members": [
+        {
           "type": "STRING",
           "value": "head"
         },
         {
-          "type": "STRING",
-          "value": "upstream"
-        },
-        {
-          "type": "STRING",
-          "value": "ab"
+          "type": "SYMBOL",
+          "name": "data_head"
         }
       ]
     },
-    "header_arg": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PREC",
-        "value": -1,
-        "content": {
-          "type": "REPEAT1",
-          "content": {
-            "type": "PATTERN",
-            "value": ".|\\\\\\r?\\n"
-          }
+    "data_oid": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "sha1"
+        },
+        {
+          "type": "STRING",
+          "value": "(initial)"
         }
-      }
+      ]
+    },
+    "data_head": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "branch_name"
+        },
+        {
+          "type": "STRING",
+          "value": "(detached)"
+        }
+      ]
+    },
+    "branch_name": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z]+"
     },
     "identifier": {
       "type": "PATTERN",
