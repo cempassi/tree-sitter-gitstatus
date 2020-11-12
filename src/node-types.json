@@ -1,5 +1,24 @@
 [
   {
+    "type": "ab",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ahead",
+          "named": true
+        },
+        {
+          "type": "behind",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "branch",
     "named": true,
     "fields": {},
@@ -7,6 +26,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "ab",
+          "named": true
+        },
         {
           "type": "head",
           "named": true
@@ -23,7 +46,7 @@
     }
   },
   {
-    "type": "data_head",
+    "type": "head",
     "named": true,
     "fields": {},
     "children": {
@@ -32,36 +55,6 @@
       "types": [
         {
           "type": "branch_name",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "data_oid",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "sha1",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "head",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "data_head",
           "named": true
         }
       ]
@@ -103,10 +96,10 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "data_oid",
+          "type": "sha1",
           "named": true
         }
       ]
@@ -136,7 +129,7 @@
       "required": true,
       "types": [
         {
-          "type": "branch_name",
+          "type": "upstream_branch",
           "named": true
         }
       ]
@@ -163,6 +156,18 @@
     "named": false
   },
   {
+    "type": "ab",
+    "named": false
+  },
+  {
+    "type": "ahead",
+    "named": true
+  },
+  {
+    "type": "behind",
+    "named": true
+  },
+  {
     "type": "branch",
     "named": false
   },
@@ -185,5 +190,9 @@
   {
     "type": "upstream",
     "named": false
+  },
+  {
+    "type": "upstream_branch",
+    "named": true
   }
 ]

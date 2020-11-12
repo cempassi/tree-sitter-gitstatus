@@ -11,16 +11,18 @@ module.exports = grammar({
     header_definition: ($) => seq("#", $.header_type, "\n"),
 
     header_type: ($) => choice($.branch),
-    branch: ($) => seq("branch", ".", choice($.oid, $.head, $.upstream)),
-    oid: ($) => seq("oid", $.data_oid),
-    head: ($) => seq("head", $.data_head),
-    upstream: ($) => seq("upstream", $.branch_name),
 
+    branch: ($) => seq("branch", ".", choice($.oid, $.head, $.upstream, $.ab)),
 
-    data_oid: ($) => choice($.sha1, "(initial)"),
-    data_head: ($) => choice($.branch_name, "(detached)"),
+    oid: ($) => seq("oid", choice($.sha1, "(initial)")),
+    head: ($) => seq("head", choice($.branch_name, "(detached)")),
+    upstream: ($) => seq("upstream", $.upstream_branch),
+    ab: ($) => seq("ab", $.ahead, $.behind),
 
+    ahead: () => /\+[0-9]+/,
+    behind: () => /\-[0-9]+/,
     branch_name: () => /[a-zA-Z]+/,
+    upstream_branch: () => /[a-zA-Z]+\/[a-zA-Z]+/,
     identifier: () => /[a-z]+/,
     sha1: () => /[0-9a-f]{5,40}/,
   },

@@ -69,6 +69,10 @@
             {
               "type": "SYMBOL",
               "name": "upstream"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "ab"
             }
           ]
         }
@@ -82,8 +86,17 @@
           "value": "oid"
         },
         {
-          "type": "SYMBOL",
-          "name": "data_oid"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "sha1"
+            },
+            {
+              "type": "STRING",
+              "value": "(initial)"
+            }
+          ]
         }
       ]
     },
@@ -95,8 +108,17 @@
           "value": "head"
         },
         {
-          "type": "SYMBOL",
-          "name": "data_head"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "branch_name"
+            },
+            {
+              "type": "STRING",
+              "value": "(detached)"
+            }
+          ]
         }
       ]
     },
@@ -109,39 +131,42 @@
         },
         {
           "type": "SYMBOL",
-          "name": "branch_name"
+          "name": "upstream_branch"
         }
       ]
     },
-    "data_oid": {
-      "type": "CHOICE",
+    "ab": {
+      "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "sha1"
+          "type": "STRING",
+          "value": "ab"
         },
         {
-          "type": "STRING",
-          "value": "(initial)"
+          "type": "SYMBOL",
+          "name": "ahead"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "behind"
         }
       ]
     },
-    "data_head": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "branch_name"
-        },
-        {
-          "type": "STRING",
-          "value": "(detached)"
-        }
-      ]
+    "ahead": {
+      "type": "PATTERN",
+      "value": "\\+[0-9]+"
+    },
+    "behind": {
+      "type": "PATTERN",
+      "value": "\\-[0-9]+"
     },
     "branch_name": {
       "type": "PATTERN",
       "value": "[a-zA-Z]+"
+    },
+    "upstream_branch": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z]+\\/[a-zA-Z]+"
     },
     "identifier": {
       "type": "PATTERN",

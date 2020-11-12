@@ -10,8 +10,7 @@ Header branch oid sha1
 	(header_definition
 		(header_type 
 			(branch
-				(oid 
-					(data_oid (sha1)))))))
+				(oid (sha1))))))
 
 ====================
 Header branch oid initial
@@ -24,9 +23,7 @@ Header branch oid initial
 (source_file
 	(header_definition
 		(header_type 
-			(branch
-				(oid 
-					(data_oid))))))
+			(branch (oid )))))
 
 ====================
 Header branch head branch_name
@@ -40,8 +37,7 @@ Header branch head branch_name
 	(header_definition
 		(header_type 
 			(branch
-				(head 
-					(data_head (branch_name)))))))
+				(head (branch_name))))))
 
 ====================
 Header branch head detached
@@ -54,15 +50,13 @@ Header branch head detached
 (source_file
 	(header_definition
 		(header_type 
-			(branch
-				(head 
-					(data_head ))))))
+			(branch (head)))))
 
 ====================
 Header branch upstream
 ====================
 
-# branch.upstream master
+# branch.upstream origin/master
 
 ---
 
@@ -70,5 +64,18 @@ Header branch upstream
 	(header_definition
 		(header_type 
 			(branch
-				(upstream
-					(branch_name))))))
+				(upstream (upstream_branch))))))
+
+====================
+Header branch ab
+====================
+
+# branch.ab +0 -4
+
+---
+
+(source_file
+	(header_definition
+		(header_type 
+			(branch
+				(ab (ahead) (behind))))))
