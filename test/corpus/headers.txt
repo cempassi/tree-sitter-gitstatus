@@ -1,0 +1,12 @@
+====================
+Headers
+====================
+
+# branch.oid 0000000000
+
+---
+
+(source_file
+	(header_definition
+		(header_branch
+			(header_branch_name) (sha1))))

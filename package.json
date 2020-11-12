@@ -1,0 +1,29 @@
+{
+  "name": "tree-sitter-gitstatus",
+  "version": "1.0.0",
+  "description": "Git status --porcelain grammar for tree-sitter",
+  "main": "index.js",
+  "scripts": {
+    "test": "tree-sitter test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cempassi/tree-sitter-gitstatus.git"
+  },
+  "keywords": [
+    "tree-sitter",
+    "git"
+  ],
+  "author": "Cedric M'Passi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cempassi/tree-sitter-gitstatus/issues"
+  },
+  "homepage": "https://github.com/cempassi/tree-sitter-gitstatus#readme",
+  "dependencies": {
+    "nan": "^2.14.2"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.17.3"
+  }
+}

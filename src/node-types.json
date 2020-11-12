@@ -1,0 +1,95 @@
+[
+  {
+    "type": "header_branch",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "header_branch_name",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "sha1",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "header_branch_name",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "header_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "header_branch",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "header_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "\n",
+    "named": false
+  },
+  {
+    "type": "#branch",
+    "named": false
+  },
+  {
+    "type": ".",
+    "named": false
+  },
+  {
+    "type": "ab",
+    "named": false
+  },
+  {
+    "type": "head",
+    "named": false
+  },
+  {
+    "type": "oid",
+    "named": false
+  },
+  {
+    "type": "sha1",
+    "named": true
+  },
+  {
+    "type": "upstream",
+    "named": false
+  }
+]
