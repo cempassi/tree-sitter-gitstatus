@@ -3,22 +3,35 @@
   "word": "identifier",
   "rules": {
     "source_file": {
-      "type": "REPEAT",
-      "content": {
-        "type": "SYMBOL",
-        "name": "_definition"
-      }
-    },
-    "_definition": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "header_definition"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "header"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "file"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
-    "header_definition": {
+    "header": {
       "type": "SEQ",
       "members": [
         {
@@ -152,21 +165,34 @@
         }
       ]
     },
+    "file": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "type"
+        }
+      ]
+    },
+    "type": {
+      "type": "PATTERN",
+      "value": "[12u]"
+    },
     "ahead": {
       "type": "PATTERN",
-      "value": "\\+[0-9]+"
+      "value": "\\+\\d+"
     },
     "behind": {
       "type": "PATTERN",
-      "value": "\\-[0-9]+"
+      "value": "\\-\\d+"
     },
     "branch_name": {
       "type": "PATTERN",
-      "value": "[a-zA-Z]+"
+      "value": "\\w+\\.?\\w+"
     },
     "upstream_branch": {
       "type": "PATTERN",
-      "value": "[a-zA-Z]+\\/[a-zA-Z]+"
+      "value": "\\w+\\/\\w+\\.?\\w*"
     },
     "identifier": {
       "type": "PATTERN",
