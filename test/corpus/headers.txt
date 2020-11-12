@@ -1,5 +1,5 @@
 ====================
-Headers
+Header branch oid
 ====================
 
 # branch.oid 0000000000
@@ -9,4 +9,4 @@ Headers
 (source_file
 	(header_definition
 		(header_branch
-			(header_branch_name) (sha1))))
+			(branch_name) (sha1))))

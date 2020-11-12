@@ -52,7 +52,7 @@
           "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "header_branch_name"
+            "name": "branch_name"
           }
         },
         {
@@ -65,7 +65,29 @@
         }
       ]
     },
-    "header_branch_name": {
+    "header_branch_oid": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "$oid"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "sha1"
+            },
+            {
+              "type": "STRING",
+              "value": "(initial)"
+            }
+          ]
+        }
+      ]
+    },
+    "branch_name": {
       "type": "CHOICE",
       "members": [
         {

@@ -2,6 +2,7 @@ module.exports = grammar({
   name: "gitstatus",
 
   word: ($) => $.identifier,
+
   rules: {
     source_file: ($) => repeat($._definition),
 
@@ -17,11 +18,15 @@ module.exports = grammar({
       seq(
         headers("branch"),
         ".",
-        field("name", $.header_branch_name),
+        field("name", $.branch_name),
         field("value", $.sha1)
       ),
+	header_branch_oid: ($) => seq(
+		"$oid",
+		choice($.sha1, "(initial)")
+	),
 
-    header_branch_name: () => choice("oid", "head", "upstream", "ab"),
+    branch_name: () => choice("oid", "head", "upstream", "ab"),
 
     header_arg: () => token(prec(-1, repeat1(/.|\\\r?\n/))),
     identifier: () => /[a-z]+/,
