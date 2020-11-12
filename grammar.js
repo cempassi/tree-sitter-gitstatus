@@ -11,9 +11,11 @@ module.exports = grammar({
     header_definition: ($) => seq("#", $.header_type, "\n"),
 
     header_type: ($) => choice($.branch),
-    branch: ($) => seq("branch", ".", choice($.oid, $.head)),
+    branch: ($) => seq("branch", ".", choice($.oid, $.head, $.upstream)),
     oid: ($) => seq("oid", $.data_oid),
     head: ($) => seq("head", $.data_head),
+    upstream: ($) => seq("upstream", $.branch_name),
+
 
     data_oid: ($) => choice($.sha1, "(initial)"),
     data_head: ($) => choice($.branch_name, "(detached)"),

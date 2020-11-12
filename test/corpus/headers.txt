@@ -57,3 +57,18 @@ Header branch head detached
 			(branch
 				(head 
 					(data_head ))))))
+
+====================
+Header branch upstream
+====================
+
+# branch.upstream master
+
+---
+
+(source_file
+	(header_definition
+		(header_type 
+			(branch
+				(upstream
+					(branch_name))))))
