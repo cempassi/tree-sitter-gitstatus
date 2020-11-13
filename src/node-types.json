@@ -46,6 +46,11 @@
     }
   },
   {
+    "type": "copied",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "file",
     "named": true,
     "fields": {},
@@ -54,7 +59,19 @@
       "required": true,
       "types": [
         {
-          "type": "status",
+          "type": "ignored",
+          "named": true
+        },
+        {
+          "type": "staged",
+          "named": true
+        },
+        {
+          "type": "unstaged",
+          "named": true
+        },
+        {
+          "type": "untracked",
           "named": true
         }
       ]
@@ -173,21 +190,6 @@
     }
   },
   {
-    "type": "modified",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "unstaged",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "oid",
     "named": true,
     "fields": {},
@@ -227,15 +229,31 @@
     }
   },
   {
-    "type": "status",
+    "type": "staged",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "ignored",
+          "type": "added",
+          "named": true
+        },
+        {
+          "type": "copied",
+          "named": true
+        },
+        {
+          "type": "deleted",
+          "named": true
+        },
+        {
+          "type": "hashes",
+          "named": true
+        },
+        {
+          "type": "modes",
           "named": true
         },
         {
@@ -243,11 +261,24 @@
           "named": true
         },
         {
-          "type": "untracked",
+          "type": "path",
+          "named": true
+        },
+        {
+          "type": "renamed",
+          "named": true
+        },
+        {
+          "type": "submodule",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "subCommit",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "submodule",
@@ -281,6 +312,18 @@
       "required": true,
       "types": [
         {
+          "type": "added",
+          "named": true
+        },
+        {
+          "type": "copied",
+          "named": true
+        },
+        {
+          "type": "deleted",
+          "named": true
+        },
+        {
           "type": "hashes",
           "named": true
         },
@@ -289,11 +332,15 @@
           "named": true
         },
         {
+          "type": "modified",
+          "named": true
+        },
+        {
           "type": "path",
           "named": true
         },
         {
-          "type": "statusCode",
+          "type": "renamed",
           "named": true
         },
         {
@@ -366,6 +413,10 @@
     "named": false
   },
   {
+    "type": "C",
+    "named": false
+  },
+  {
     "type": "N...",
     "named": false
   },
@@ -376,6 +427,10 @@
   {
     "type": "ab",
     "named": false
+  },
+  {
+    "type": "added",
+    "named": true
   },
   {
     "type": "ahead",
@@ -394,8 +449,16 @@
     "named": true
   },
   {
+    "type": "deleted",
+    "named": true
+  },
+  {
     "type": "head",
     "named": false
+  },
+  {
+    "type": "modified",
+    "named": true
   },
   {
     "type": "oid",
@@ -406,11 +469,7 @@
     "named": true
   },
   {
-    "type": "statusCode",
-    "named": true
-  },
-  {
-    "type": "subCommit",
+    "type": "renamed",
     "named": true
   },
   {

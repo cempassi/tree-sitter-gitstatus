@@ -16,10 +16,21 @@ module.exports = grammar({
     ab: ($) => seq("ab", $.ahead, $.behind),
 
     //File status
-    file: ($) => seq($.status, "\n"),
-    status: ($) => choice($.untracked, $.ignored, $.modified),
-    modified: ($) => $.unstaged,
-    unstaged: ($) => seq("1", ".", $.statusCode, $.submodule, $.modes, $.hashes, $.path),
+    file: ($) => seq($._status, "\n"),
+    _status: ($) => choice($.untracked, $.ignored, $._action),
+
+    _action: ($) => seq("1", choice($.unstaged, $.staged)),
+    staged: ($) => seq($._statusCode, ".", $.submodule, $.modes, $.hashes, $.path),
+    unstaged: ($) => seq(".", $._statusCode, $.submodule, $.modes, $.hashes, $.path),
+
+		_statusCode: ($) => choice (
+			$.added,
+			$.modified,
+			$.deleted,
+			$.renamed,
+			$.copied,
+		),
+
     submodule: ($) => choice("N...", $._isSubmodule),
     _isSubmodule: ($) => seq("S", $._modifications),
     _modifications: ($) => seq($.subCommit, $.subTracked, $.subUntracked),
@@ -37,17 +48,22 @@ module.exports = grammar({
     mWorktree: () => /\d{6}/,
     octal: () => /\d{6}/,
 
-    subCommit: () => /[.|C]/,
+		added: () => "A",
+		modified: () => "M",
+		deleted: () => "D",
+		renamed: () => "R",
+		copied: () => "C",
+
+    subCommit: ($) => choice($._opt_off, "C"),
     subTracked: () => /[.|M]/,
     subUntracked: () => /[.|U]/,
-
-    statusCode: () => /[MADRCU]/,
 
     path: () => /[\.\/]?[_\w\/\.]+/,
 
     ahead: () => /\+\d+/,
     behind: () => /\-\d+/,
 
+		_opt_off: () => ".",
     branchName: () => /\w+\.?\w+/,
     upBranch: () => /\w+\/\w+\.?\w*/,
 

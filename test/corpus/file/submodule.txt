@@ -1,0 +1,62 @@
+====================
+Commit modification
+====================
+
+1 .M SC.. 100644 100644 100644 7e91309a52661f885486ad07ef010c7246b81349 7e91309a52661f885486ad07ef010c7246b81349 test/corpus/file.txt
+
+---
+
+(source_file
+	(file
+				(unstaged
+					(modified) 	(submodule (subCommit) (subTracked) (subUntracked)) 
+											(modes (mHEAD) (mIndex) (mWorktree))
+											(hashes (hHEAD) (hIndex))
+											(path))))
+
+====================
+Tracked modification
+====================
+
+1 .M S.M. 100644 100644 100644 7e91309a52661f885486ad07ef010c7246b81349 7e91309a52661f885486ad07ef010c7246b81349 test/corpus/file.txt
+
+---
+(source_file
+	(file
+				(unstaged
+					(modified) 	(submodule (subCommit) (subTracked) (subUntracked)) 
+											(modes (mHEAD) (mIndex) (mWorktree))
+											(hashes (hHEAD) (hIndex))
+											(path))))
+
+
+====================
+Untracked modification
+====================
+
+1 .M S..U 100644 100644 100644 7e91309a52661f885486ad07ef010c7246b81349 7e91309a52661f885486ad07ef010c7246b81349 test/corpus/file.txt
+
+---
+(source_file
+	(file
+		(unstaged
+			(modified) 	(submodule (subCommit) (subTracked) (subUntracked)) 
+									(modes (mHEAD) (mIndex) (mWorktree))
+									(hashes (hHEAD) (hIndex))
+									(path))))
+
+
+====================
+All modification
+====================
+
+1 .M SCMU 100644 100644 100644 7e91309a52661f885486ad07ef010c7246b81349 7e91309a52661f885486ad07ef010c7246b81349 test/corpus/file.txt
+
+---
+(source_file
+	(file
+		(unstaged
+			(modified) 	(submodule (subCommit) (subTracked) (subUntracked)) 
+									(modes (mHEAD) (mIndex) (mWorktree))
+									(hashes (hHEAD) (hIndex))
+									(path))))

@@ -1,0 +1,24 @@
+====================
+Untracked
+====================
+
+? test/corpus/file.txt
+
+---
+
+(source_file
+	(file
+			(untracked (path))))
+
+====================
+Ignored
+====================
+
+! node_modules/
+
+---
+
+(source_file
+	(file
+			(ignored (path))))
+
