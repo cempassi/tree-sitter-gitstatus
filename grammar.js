@@ -18,10 +18,12 @@ module.exports = grammar({
     ab: ($) => seq("ab", $.ahead, $.behind),
 
 		//File status
-		file: ($) => seq($.type),
+		file: ($) => seq(choice($.status), "\n"),
+		status: ($) => choice($.untracked, $.ignored),
+		untracked: ($) => seq("?", $.path),
+		ignored: ($) => seq("!", $.path),
 
-
-		type: () => /[12u]/,
+		path: () => /[\.\/]?[_\w\/\.]+/,
     ahead: () => /\+\d+/,
     behind: () => /\-\d+/,
     branch_name: () => /\w+\.?\w+/,
