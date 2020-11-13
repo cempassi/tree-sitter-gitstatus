@@ -1,0 +1,13 @@
+====================
+Modified
+====================
+
+2 R. N... 100644 100644 100644 480a8d89bfe2a4f5e12ffb5b00dc14392528cb45 480a8d89bfe2a4f5e12ffb5b00dc14392528cb45 R100 rename.toto gitstatus.vim
+
+---
+
+(source_file
+	(file
+		(staged	(renamed)) (unstaged) (submodule) 	(modes (mHEAD) (mIndex) (mWorktree))
+																								(hashes (hHEAD) (hIndex))
+																								(score) (path) (origPath)))

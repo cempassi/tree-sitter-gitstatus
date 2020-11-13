@@ -8,10 +8,9 @@ Modified
 
 (source_file
 	(file
-		(staged	
-			(modified) (submodule) 	(modes (mHEAD) (mIndex) (mWorktree))
-															(hashes (hHEAD) (hIndex))
-															(path))))
+		(staged	(modified)) (unstaged) (submodule) 	(modes (mHEAD) (mIndex) (mWorktree))
+																								(hashes (hHEAD) (hIndex))
+																								(path)))
 
 
 ====================
@@ -24,10 +23,9 @@ Added
 
 (source_file
 	(file
-		(staged	
-			(added) (submodule) 	(modes (mHEAD) (mIndex) (mWorktree))
-														(hashes (hHEAD) (hIndex))
-														(path))))
+		(staged	(added)) (unstaged) (submodule) 	(modes (mHEAD) (mIndex) (mWorktree))
+																								(hashes (hHEAD) (hIndex))
+																								(path)))
 
 
 ====================
@@ -40,38 +38,7 @@ Deleted
 
 (source_file
 	(file
-		(staged	
-			(deleted) (submodule) 	(modes (mHEAD) (mIndex) (mWorktree))
-															(hashes (hHEAD) (hIndex))
-															(path))))
+		(staged	(deleted)) (unstaged) (submodule) 	(modes (mHEAD) (mIndex) (mWorktree))
+																								(hashes (hHEAD) (hIndex))
+																								(path)))
 
-
-====================
-Renamed
-====================
-
-1 R. N... 100644 100644 100644 7e91309a52661f885486ad07ef010c7246b81349 7e91309a52661f885486ad07ef010c7246b81349 test/corpus/file.txt
-
----
-
-(source_file
-	(file
-		(staged	
-			(renamed) (submodule) 	(modes (mHEAD) (mIndex) (mWorktree))
-															(hashes (hHEAD) (hIndex))
-															(path))))
-
-====================
-Copied
-====================
-
-1 C. N... 100644 100644 100644 7e91309a52661f885486ad07ef010c7246b81349 7e91309a52661f885486ad07ef010c7246b81349 test/corpus/file.txt
-
----
-
-(source_file
-	(file
-		(staged	
-			(copied) (submodule) 	(modes (mHEAD) (mIndex) (mWorktree))
-														(hashes (hHEAD) (hIndex))
-														(path))))

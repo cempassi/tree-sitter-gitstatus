@@ -110,7 +110,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -118,11 +118,35 @@
           "named": true
         },
         {
+          "type": "hashes",
+          "named": true
+        },
+        {
           "type": "ignored",
           "named": true
         },
         {
+          "type": "modes",
+          "named": true
+        },
+        {
+          "type": "origPath",
+          "named": true
+        },
+        {
+          "type": "path",
+          "named": true
+        },
+        {
+          "type": "score",
+          "named": true
+        },
+        {
           "type": "staged",
+          "named": true
+        },
+        {
+          "type": "submodule",
           "named": true
         },
         {
@@ -183,17 +207,7 @@
   {
     "type": "head",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "branchName",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "header",
@@ -281,20 +295,15 @@
   {
     "type": "oid",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "sha1",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
-    "type": "sha1",
+    "type": "origPath",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "path",
     "named": true,
     "fields": {}
   },
@@ -322,8 +331,8 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
         {
           "type": "added",
@@ -338,27 +347,11 @@
           "named": true
         },
         {
-          "type": "hashes",
-          "named": true
-        },
-        {
-          "type": "modes",
-          "named": true
-        },
-        {
           "type": "modified",
           "named": true
         },
         {
-          "type": "path",
-          "named": true
-        },
-        {
           "type": "renamed",
-          "named": true
-        },
-        {
-          "type": "submodule",
           "named": true
         }
       ]
@@ -447,8 +440,8 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
         {
           "type": "added",
@@ -463,27 +456,11 @@
           "named": true
         },
         {
-          "type": "hashes",
-          "named": true
-        },
-        {
-          "type": "modes",
-          "named": true
-        },
-        {
           "type": "modified",
           "named": true
         },
         {
-          "type": "path",
-          "named": true
-        },
-        {
           "type": "renamed",
-          "named": true
-        },
-        {
-          "type": "submodule",
           "named": true
         }
       ]
@@ -507,17 +484,7 @@
   {
     "type": "upstream",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "upBranch",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "\n",
@@ -545,6 +512,10 @@
   },
   {
     "type": "1",
+    "named": false
+  },
+  {
+    "type": "2",
     "named": false
   },
   {
@@ -600,12 +571,8 @@
     "named": true
   },
   {
-    "type": "branch.",
+    "type": "branch",
     "named": false
-  },
-  {
-    "type": "branchName",
-    "named": true
   },
   {
     "type": "deleted",
@@ -632,11 +599,11 @@
     "named": false
   },
   {
-    "type": "path",
+    "type": "renamed",
     "named": true
   },
   {
-    "type": "renamed",
+    "type": "score",
     "named": true
   },
   {
@@ -650,10 +617,6 @@
   {
     "type": "u",
     "named": false
-  },
-  {
-    "type": "upBranch",
-    "named": true
   },
   {
     "type": "upstream",

@@ -6,28 +6,18 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "header"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "header"
+          }
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "file"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "file"
+          }
         }
       ]
     },
@@ -39,17 +29,8 @@
           "value": "#"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "branch"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "\n"
+          "type": "SYMBOL",
+          "name": "branch"
         }
       ]
     },
@@ -58,7 +39,11 @@
       "members": [
         {
           "type": "STRING",
-          "value": "branch."
+          "value": "branch"
+        },
+        {
+          "type": "STRING",
+          "value": "."
         },
         {
           "type": "CHOICE",
@@ -111,7 +96,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "sha1"
+              "name": "_sha1"
             },
             {
               "type": "STRING",
@@ -133,7 +118,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "branchName"
+              "name": "_branchName"
             },
             {
               "type": "STRING",
@@ -152,7 +137,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "upBranch"
+          "name": "_upBranch"
         }
       ]
     },
@@ -191,7 +176,11 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_status"
+          "name": "_inplace"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_moved"
         },
         {
           "type": "SYMBOL",
@@ -207,7 +196,7 @@
         }
       ]
     },
-    "_status": {
+    "_inplace": {
       "type": "SEQ",
       "members": [
         {
@@ -215,42 +204,8 @@
           "value": "1"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "staged"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "unstaged"
-            }
-          ]
-        }
-      ]
-    },
-    "staged": {
-      "type": "SEQ",
-      "members": [
-        {
           "type": "SYMBOL",
-          "name": "_action"
-        },
-        {
-          "type": "STRING",
-          "value": "."
-        },
-        {
-          "type": "SYMBOL",
-          "name": "submodule"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "modes"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "hashes"
+          "name": "_stat"
         },
         {
           "type": "SYMBOL",
@@ -258,32 +213,28 @@
         }
       ]
     },
-    "unstaged": {
+    "_moved": {
       "type": "SEQ",
       "members": [
         {
           "type": "STRING",
-          "value": "."
+          "value": "2"
         },
         {
           "type": "SYMBOL",
-          "name": "_action"
+          "name": "_stat"
         },
         {
           "type": "SYMBOL",
-          "name": "submodule"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "modes"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "hashes"
+          "name": "score"
         },
         {
           "type": "SYMBOL",
           "name": "path"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "origPath"
         }
       ]
     },
@@ -316,9 +267,46 @@
         }
       ]
     },
+    "_stat": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "staged"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "unstaged"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "submodule"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "modes"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "hashes"
+        }
+      ]
+    },
+    "staged": {
+      "type": "SYMBOL",
+      "name": "_action"
+    },
+    "unstaged": {
+      "type": "SYMBOL",
+      "name": "_action"
+    },
     "_action": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "STRING",
+          "value": "."
+        },
         {
           "type": "SYMBOL",
           "name": "added"
@@ -456,8 +444,12 @@
       ]
     },
     "path": {
-      "type": "PATTERN",
-      "value": "[\\.\\/]?[_\\w\\/\\.]+"
+      "type": "SYMBOL",
+      "name": "_path"
+    },
+    "origPath": {
+      "type": "SYMBOL",
+      "name": "_path"
     },
     "_isSubmodule": {
       "type": "SEQ",
@@ -516,48 +508,48 @@
       ]
     },
     "mHEAD": {
-      "type": "PATTERN",
-      "value": "\\d{6}"
+      "type": "SYMBOL",
+      "name": "_octal"
     },
     "mIndex": {
-      "type": "PATTERN",
-      "value": "\\d{6}"
+      "type": "SYMBOL",
+      "name": "_octal"
     },
     "mWorktree": {
-      "type": "PATTERN",
-      "value": "\\d{6}"
+      "type": "SYMBOL",
+      "name": "_octal"
     },
     "mStage1": {
-      "type": "PATTERN",
-      "value": "\\d{6}"
+      "type": "SYMBOL",
+      "name": "_octal"
     },
     "mStage2": {
-      "type": "PATTERN",
-      "value": "\\d{6}"
+      "type": "SYMBOL",
+      "name": "_octal"
     },
     "mStage3": {
-      "type": "PATTERN",
-      "value": "\\d{6}"
+      "type": "SYMBOL",
+      "name": "_octal"
     },
     "hHEAD": {
-      "type": "PATTERN",
-      "value": "[0-9a-f]{5,40}"
+      "type": "SYMBOL",
+      "name": "_sha1"
     },
     "hIndex": {
-      "type": "PATTERN",
-      "value": "[0-9a-f]{5,40}"
+      "type": "SYMBOL",
+      "name": "_sha1"
     },
     "hStage1": {
-      "type": "PATTERN",
-      "value": "[0-9a-f]{5,40}"
+      "type": "SYMBOL",
+      "name": "_sha1"
     },
     "hStage2": {
-      "type": "PATTERN",
-      "value": "[0-9a-f]{5,40}"
+      "type": "SYMBOL",
+      "name": "_sha1"
     },
     "hStage3": {
-      "type": "PATTERN",
-      "value": "[0-9a-f]{5,40}"
+      "type": "SYMBOL",
+      "name": "_sha1"
     },
     "added": {
       "type": "STRING",
@@ -595,13 +587,13 @@
       "type": "STRING",
       "value": "DD"
     },
-    "deletedByUs": {
-      "type": "STRING",
-      "value": "DU"
-    },
     "deletedByThem": {
       "type": "STRING",
       "value": "UD"
+    },
+    "deletedByUs": {
+      "type": "STRING",
+      "value": "DU"
     },
     "bothModified": {
       "type": "STRING",
@@ -622,11 +614,19 @@
     },
     "subTracked": {
       "type": "PATTERN",
-      "value": "[.|M]"
+      "value": "(\\.|M)"
     },
     "subUntracked": {
       "type": "PATTERN",
       "value": "[.|U]"
+    },
+    "score": {
+      "type": "PATTERN",
+      "value": "(R|C)[0-9]{3}"
+    },
+    "_separator": {
+      "type": "PATTERN",
+      "value": "(\\t)"
     },
     "ahead": {
       "type": "PATTERN",
@@ -636,17 +636,25 @@
       "type": "PATTERN",
       "value": "\\-\\d+"
     },
-    "branchName": {
+    "_branchName": {
       "type": "PATTERN",
       "value": "\\w+\\.?\\w+"
     },
-    "upBranch": {
+    "_upBranch": {
       "type": "PATTERN",
       "value": "\\w+\\/\\w+\\.?\\w*"
     },
-    "sha1": {
+    "_sha1": {
       "type": "PATTERN",
       "value": "[0-9a-f]{5,40}"
+    },
+    "_octal": {
+      "type": "PATTERN",
+      "value": "\\d{6}"
+    },
+    "_path": {
+      "type": "PATTERN",
+      "value": "[\\.]{0,2}.*"
     },
     "identifier": {
       "type": "PATTERN",

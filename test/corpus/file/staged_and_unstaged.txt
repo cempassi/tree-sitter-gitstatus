@@ -1,0 +1,13 @@
+====================
+Staged and Unstaged
+====================
+
+1 AM N... 100644 100644 100644 7e91309a52661f885486ad07ef010c7246b81349 7e91309a52661f885486ad07ef010c7246b81349 test/corpus/file.txt
+
+---
+
+(source_file
+	(file
+		(staged	(added)) (unstaged (modified)) (submodule) 	(modes (mHEAD) (mIndex) (mWorktree))
+																												(hashes (hHEAD) (hIndex))
+																												(path)))

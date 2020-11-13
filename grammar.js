@@ -4,25 +4,26 @@ module.exports = grammar({
   word: ($) => $.identifier,
 
   rules: {
-    source_file: ($) => seq(optional($.header), optional($.file)),
+    source_file: ($) => seq(repeat($.header), repeat($.file)),
 
-    header: ($) => seq("#", choice($.branch), "\n"),
+    header: ($) => seq("#", $.branch),
 
     //Branch level informations are obtained from a header
     branch: ($) =>
       seq(
-        "branch.",
+        "branch",
+				".",
         choice($.oid, $.head, optional($.upstream), optional($.ab))
       ),
 
     //last commit
-    oid: ($) => seq("oid", choice($.sha1, "(initial)")),
+    oid: ($) => seq("oid", choice($._sha1, "(initial)")),
 
     //current branch
-    head: ($) => seq("head", choice($.branchName, "(detached)")),
+    head: ($) => seq("head", choice($._branchName, "(detached)")),
 
     // Remote tracked branch
-    upstream: ($) => seq("upstream", $.upBranch),
+    upstream: ($) => seq("upstream", $._upBranch),
 
     // Diff with remote commit
     ab: ($) => seq("ab", $.ahead, $.behind),
@@ -30,18 +31,23 @@ module.exports = grammar({
     // Each file is on a single line
     file: ($) => seq($._area, "\n"),
 
-    _area: ($) => choice($._status, $.conflicted, $.untracked, $.ignored),
+    _area: ($) => choice($._inplace, $._moved, $.conflicted, $.untracked, $.ignored),
 
-    _status: ($) => seq("1", choice($.staged, $.unstaged)),
+    _inplace: ($) => seq("1", $._stat, $.path),
 
-    staged: ($) => seq($._action, ".", $.submodule, $.modes, $.hashes, $.path),
+    _moved: ($) => seq("2", $._stat, $.score, $.path , $.origPath),
 
-    unstaged: ($) =>
-      seq(".", $._action, $.submodule, $.modes, $.hashes, $.path),
+    conflicted: ($) =>
+      seq("u", $._conflict, $.submodule, $.stagesModes, $.stagesHashes, $.path),
 
-    conflicted: ($) => seq("u", $._conflict, $.submodule, $.stagesModes, $.stagesHashes, $.path),
+    _stat: ($) => seq($.staged, $.unstaged, $.submodule, $.modes, $.hashes),
 
-    _action: ($) => choice($.added, $.modified, $.deleted, $.renamed, $.copied),
+    staged: ($) => $._action,
+
+    unstaged: ($) => $._action,
+
+    _action: ($) =>
+      choice(".", $.added, $.modified, $.deleted, $.renamed, $.copied),
 
     _conflict: ($) =>
       choice(
@@ -58,14 +64,16 @@ module.exports = grammar({
 
     modes: ($) => seq($.mHEAD, $.mIndex, $.mWorktree),
 
-		// s => Conflict stages 
-		stagesModes: ($) => seq($.mStage1, $.mStage2, $.mStage3, $.mWorktree),
+    // s => Conflict stages
+    stagesModes: ($) => seq($.mStage1, $.mStage2, $.mStage3, $.mWorktree),
 
-		stagesHashes: ($) => seq($.hStage1, $.hStage2, $.hStage3),
+    stagesHashes: ($) => seq($.hStage1, $.hStage2, $.hStage3),
 
     hashes: ($) => seq($.hHEAD, $.hIndex),
 
-    path: () => /[\.\/]?[_\w\/\.]+/,
+    path: ($) => $._path,
+
+    origPath: ($) => $._path,
 
     // Submodule status sumary available for the parent module
     _isSubmodule: ($) => seq("S", $._submoduleStatus),
@@ -76,51 +84,56 @@ module.exports = grammar({
     untracked: ($) => seq("?", $.path),
     ignored: ($) => seq("!", $.path),
 
-		// m => File modes
-    mHEAD: () => /\d{6}/,
-    mIndex: () => /\d{6}/,
-    mWorktree: () => /\d{6}/,
-    mStage1: () => /\d{6}/,
-    mStage2: () => /\d{6}/,
-    mStage3: () => /\d{6}/,
+    // m => File modes
+    mHEAD: ($) => $._octal,
+    mIndex: ($) => $._octal,
+    mWorktree: ($) => $._octal,
+    mStage1: ($) => $._octal,
+    mStage2: ($) => $._octal,
+    mStage3: ($) => $._octal,
 
-		// h => File hash
-    hHEAD: () => /[0-9a-f]{5,40}/,
-    hIndex: () => /[0-9a-f]{5,40}/,
-		hStage1: () => /[0-9a-f]{5,40}/, 
-		hStage2: () => /[0-9a-f]{5,40}/, 
-		hStage3: () => /[0-9a-f]{5,40}/, 
+    // h => File hash
+    hHEAD: ($) => $._sha1,
+    hIndex: ($) => $._sha1,
+    hStage1: ($) => $._sha1,
+    hStage2: ($) => $._sha1,
+    hStage3: ($) => $._sha1,
 
-		// Actions
+    // Actions
     added: () => "A",
     modified: () => "M",
     deleted: () => "D",
     renamed: () => "R",
     copied: () => "C",
 
-		//Conflitcts
+    //Conflitcts
     bothAdded: () => "AA",
     addedByUs: () => "AU",
     addedByThem: () => "UA",
     bothDeleted: () => "DD",
-    deletedByUs: () => "DU",
     deletedByThem: () => "UD",
+    deletedByUs: () => "DU",
     bothModified: () => "UU",
 
-		//Submodule
+    //Submodule
     subCommit: ($) => choice($._opt_off, "C"),
-    subTracked: () => /[.|M]/,
+    subTracked: () => /(\.|M)/,
     subUntracked: () => /[.|U]/,
 
-		//Diff
+    //Change and rename
+    score: () => /(R|C)[0-9]{3}/,
+    _separator: () => /(\t)/,
+
+    //Diff
     ahead: () => /\+\d+/,
     behind: () => /\-\d+/,
 
-		//Header
-    branchName: () => /\w+\.?\w+/,
-    upBranch: () => /\w+\/\w+\.?\w*/,
-    sha1: () => /[0-9a-f]{5,40}/,
-
+    //Regular expressions
+    _branchName: () => /\w+\.?\w+/,
+    _upBranch: () => /\w+\/\w+\.?\w*/,
+    _sha1: () => /[0-9a-f]{5,40}/,
+    _octal: () => /\d{6}/,
+    _path: () => /[\.]{0,2}.*/,
     identifier: () => /[a-z]+/,
     _opt_off: () => ".",
   },
