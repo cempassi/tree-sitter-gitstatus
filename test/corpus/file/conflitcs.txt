@@ -1,0 +1,101 @@
+====================
+Both Added
+====================
+
+u AA N... 100644 100644 100644 100644 9bb901135bff6eb64f700d4bc344925c580fb173 c552513cae3dd9450bd6f21d6ab45be9159b53cb 480a8d89bfe2a4f5e12ffb5b00dc14392528cb45 /test/corpus/test.txt
+
+---
+
+(source_file
+	(file
+		(conflicted
+			(bothAdded) (submodule) (stagesModes (mStage1) (mStage2) (mStage3) (mWorktree))
+																	(stagesHashes (hStage1) (hStage2) (hStage3))
+																	(path))))
+
+====================
+Added by Us
+====================
+
+u AU N... 100644 100644 100644 100644 9bb901135bff6eb64f700d4bc344925c580fb173 c552513cae3dd9450bd6f21d6ab45be9159b53cb 480a8d89bfe2a4f5e12ffb5b00dc14392528cb45 /test/corpus/test.txt
+
+---
+
+(source_file
+	(file
+		(conflicted
+			(addedByUs) (submodule) (stagesModes (mStage1) (mStage2) (mStage3) (mWorktree))
+																	(stagesHashes (hStage1) (hStage2) (hStage3))
+																	(path))))
+====================
+Added by Them
+====================
+
+u UA N... 100644 100644 100644 100644 9bb901135bff6eb64f700d4bc344925c580fb173 c552513cae3dd9450bd6f21d6ab45be9159b53cb 480a8d89bfe2a4f5e12ffb5b00dc14392528cb45 /test/corpus/test.txt
+
+---
+
+(source_file
+	(file
+		(conflicted
+			(addedByThem) (submodule) (stagesModes (mStage1) (mStage2) (mStage3) (mWorktree))
+																	(stagesHashes (hStage1) (hStage2) (hStage3))
+																	(path))))
+
+====================
+Both Deleted
+====================
+
+u DD N... 100644 100644 100644 100644 9bb901135bff6eb64f700d4bc344925c580fb173 c552513cae3dd9450bd6f21d6ab45be9159b53cb 480a8d89bfe2a4f5e12ffb5b00dc14392528cb45 /test/corpus/test.txt
+
+---
+
+(source_file
+	(file
+		(conflicted
+			(bothDeleted) (submodule) (stagesModes (mStage1) (mStage2) (mStage3) (mWorktree))
+																	(stagesHashes (hStage1) (hStage2) (hStage3))
+																	(path))))
+
+====================
+DeletedByUs
+====================
+
+u DU N... 100644 100644 100644 100644 9bb901135bff6eb64f700d4bc344925c580fb173 c552513cae3dd9450bd6f21d6ab45be9159b53cb 480a8d89bfe2a4f5e12ffb5b00dc14392528cb45 /test/corpus/test.txt
+
+---
+
+(source_file
+	(file
+		(conflicted
+			(deletedByUs) (submodule) (stagesModes (mStage1) (mStage2) (mStage3) (mWorktree))
+																	(stagesHashes (hStage1) (hStage2) (hStage3))
+																	(path))))
+====================
+DeletedByThem
+====================
+
+u UD N... 100644 100644 100644 100644 9bb901135bff6eb64f700d4bc344925c580fb173 c552513cae3dd9450bd6f21d6ab45be9159b53cb 480a8d89bfe2a4f5e12ffb5b00dc14392528cb45 /test/corpus/test.txt
+
+---
+
+(source_file
+	(file
+		(conflicted
+			(deletedByThem) (submodule) (stagesModes (mStage1) (mStage2) (mStage3) (mWorktree))
+																	(stagesHashes (hStage1) (hStage2) (hStage3))
+																	(path))))
+====================
+Both Modified
+====================
+
+u UU N... 100644 100644 100644 100644 9bb901135bff6eb64f700d4bc344925c580fb173 c552513cae3dd9450bd6f21d6ab45be9159b53cb 480a8d89bfe2a4f5e12ffb5b00dc14392528cb45 /test/corpus/test.txt
+
+---
+
+(source_file
+	(file
+		(conflicted
+			(bothModified) (submodule) (stagesModes (mStage1) (mStage2) (mStage3) (mWorktree))
+																	(stagesHashes (hStage1) (hStage2) (hStage3))
+																	(path))))

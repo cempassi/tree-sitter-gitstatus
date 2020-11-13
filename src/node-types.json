@@ -24,7 +24,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "ab",
@@ -46,6 +46,61 @@
     }
   },
   {
+    "type": "conflicted",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "addedByThem",
+          "named": true
+        },
+        {
+          "type": "addedByUs",
+          "named": true
+        },
+        {
+          "type": "bothAdded",
+          "named": true
+        },
+        {
+          "type": "bothDeleted",
+          "named": true
+        },
+        {
+          "type": "bothModified",
+          "named": true
+        },
+        {
+          "type": "deletedByThem",
+          "named": true
+        },
+        {
+          "type": "deletedByUs",
+          "named": true
+        },
+        {
+          "type": "path",
+          "named": true
+        },
+        {
+          "type": "stagesHashes",
+          "named": true
+        },
+        {
+          "type": "stagesModes",
+          "named": true
+        },
+        {
+          "type": "submodule",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "copied",
     "named": true,
     "fields": {}
@@ -58,6 +113,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "conflicted",
+          "named": true
+        },
         {
           "type": "ignored",
           "named": true
@@ -84,6 +143,21 @@
   },
   {
     "type": "hIndex",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "hStage1",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "hStage2",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "hStage3",
     "named": true,
     "fields": {}
   },
@@ -158,6 +232,21 @@
   },
   {
     "type": "mIndex",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "mStage1",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "mStage2",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "mStage3",
     "named": true,
     "fields": {}
   },
@@ -270,6 +359,56 @@
         },
         {
           "type": "submodule",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "stagesHashes",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "hStage1",
+          "named": true
+        },
+        {
+          "type": "hStage2",
+          "named": true
+        },
+        {
+          "type": "hStage3",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "stagesModes",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "mStage1",
+          "named": true
+        },
+        {
+          "type": "mStage2",
+          "named": true
+        },
+        {
+          "type": "mStage3",
+          "named": true
+        },
+        {
+          "type": "mWorktree",
           "named": true
         }
       ]
@@ -433,11 +572,31 @@
     "named": true
   },
   {
+    "type": "addedByThem",
+    "named": true
+  },
+  {
+    "type": "addedByUs",
+    "named": true
+  },
+  {
     "type": "ahead",
     "named": true
   },
   {
     "type": "behind",
+    "named": true
+  },
+  {
+    "type": "bothAdded",
+    "named": true
+  },
+  {
+    "type": "bothDeleted",
+    "named": true
+  },
+  {
+    "type": "bothModified",
     "named": true
   },
   {
@@ -450,6 +609,14 @@
   },
   {
     "type": "deleted",
+    "named": true
+  },
+  {
+    "type": "deletedByThem",
+    "named": true
+  },
+  {
+    "type": "deletedByUs",
     "named": true
   },
   {
@@ -479,6 +646,10 @@
   {
     "type": "subUntracked",
     "named": true
+  },
+  {
+    "type": "u",
+    "named": false
   },
   {
     "type": "upBranch",
