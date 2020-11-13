@@ -6,30 +6,53 @@ module.exports = grammar({
   rules: {
     source_file: ($) => seq(optional($.header), optional($.file)),
 
-    header: ($) => seq("#", $.header_type, "\n"),
+    header: ($) => seq("#", choice($.branch), "\n"),
 
-    header_type: ($) => choice($.branch),
-
-		//Buffer header grammar
-    branch: ($) => seq("branch", ".", choice($.oid, $.head, $.upstream, $.ab)),
+    //Buffer header grammar
+    branch: ($) => seq("branch.", choice($.oid, $.head, $.upstream, $.ab)),
     oid: ($) => seq("oid", choice($.sha1, "(initial)")),
-    head: ($) => seq("head", choice($.branch_name, "(detached)")),
-    upstream: ($) => seq("upstream", $.upstream_branch),
+    head: ($) => seq("head", choice($.branchName, "(detached)")),
+    upstream: ($) => seq("upstream", $.upBranch),
     ab: ($) => seq("ab", $.ahead, $.behind),
 
-		//File status
-		file: ($) => seq(choice($.status), "\n"),
-		status: ($) => choice($.untracked, $.ignored),
-		untracked: ($) => seq("?", $.path),
-		ignored: ($) => seq("!", $.path),
+    //File status
+    file: ($) => seq($.status, "\n"),
+    status: ($) => choice($.untracked, $.ignored, $.modified),
+    modified: ($) => $.unstaged,
+    unstaged: ($) => seq("1", ".", $.statusCode, $.submodule, $.modes, $.hashes, $.path),
+    submodule: ($) => choice("N...", $._isSubmodule),
+    _isSubmodule: ($) => seq("S", $._modifications),
+    _modifications: ($) => seq($.subCommit, $.subTracked, $.subUntracked),
+    modes: ($) => seq($.mHEAD, $.mIndex, $.mWorktree),
+		hashes: ($) => seq($.hHEAD, $.hIndex),
 
-		path: () => /[\.\/]?[_\w\/\.]+/,
+    untracked: ($) => seq("?", $.path),
+    ignored: ($) => seq("!", $.path),
+
+		hHEAD: () => /[0-9a-f]{5,40}/,
+		hIndex: () => /[0-9a-f]{5,40}/,
+
+    mHEAD: () => /\d{6}/,
+    mIndex: () => /\d{6}/,
+    mWorktree: () => /\d{6}/,
+    octal: () => /\d{6}/,
+
+    subCommit: () => /[.|C]/,
+    subTracked: () => /[.|M]/,
+    subUntracked: () => /[.|U]/,
+
+    statusCode: () => /[MADRCU]/,
+
+    path: () => /[\.\/]?[_\w\/\.]+/,
+
     ahead: () => /\+\d+/,
     behind: () => /\-\d+/,
-    branch_name: () => /\w+\.?\w+/,
-    upstream_branch: () => /\w+\/\w+\.?\w*/,
-    identifier: () => /[a-z]+/,
+
+    branchName: () => /\w+\.?\w+/,
+    upBranch: () => /\w+\/\w+\.?\w*/,
+
     sha1: () => /[0-9a-f]{5,40}/,
 
+    identifier: ($) => /[a-z]+/,
   },
 });

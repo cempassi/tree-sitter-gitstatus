@@ -23,3 +23,38 @@ File ignored
 	(file
 		(status
 			(ignored (path)))))
+
+====================
+File Unstaged Modified, no submodule
+====================
+
+1 .M N... 100644 100644 100644 7e91309a52661f885486ad07ef010c7246b81349 7e91309a52661f885486ad07ef010c7246b81349 test/corpus/file.txt
+
+---
+
+(source_file
+	(file
+		(status
+			(modified
+				(unstaged
+					(statusCode) (submodule) (modes (mHEAD) (mIndex) (mWorktree))
+																	 (hashes (hHEAD) (hIndex))
+																	 (path))))))
+
+====================
+File Unstaged, submodule with commit
+====================
+
+1 .M SC.. 100644 100644 100644 7e91309a52661f885486ad07ef010c7246b81349 7e91309a52661f885486ad07ef010c7246b81349 test/corpus/file.txt
+
+---
+
+(source_file
+	(file
+		(status
+			(modified
+				(unstaged
+					(statusCode) 	(submodule (subCommit) (subTracked) (subUntracked)) 
+										 		(modes (mHEAD) (mIndex) (mWorktree))
+												(hashes (hHEAD) (hIndex))
+												(path))))))

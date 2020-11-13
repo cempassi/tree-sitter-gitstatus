@@ -39,21 +39,17 @@
           "value": "#"
         },
         {
-          "type": "SYMBOL",
-          "name": "header_type"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "branch"
+            }
+          ]
         },
         {
           "type": "STRING",
           "value": "\n"
-        }
-      ]
-    },
-    "header_type": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "branch"
         }
       ]
     },
@@ -62,11 +58,7 @@
       "members": [
         {
           "type": "STRING",
-          "value": "branch"
-        },
-        {
-          "type": "STRING",
-          "value": "."
+          "value": "branch."
         },
         {
           "type": "CHOICE",
@@ -125,7 +117,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "branch_name"
+              "name": "branchName"
             },
             {
               "type": "STRING",
@@ -144,7 +136,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "upstream_branch"
+          "name": "upBranch"
         }
       ]
     },
@@ -169,13 +161,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "status"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "status"
         },
         {
           "type": "STRING",
@@ -193,6 +180,120 @@
         {
           "type": "SYMBOL",
           "name": "ignored"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "modified"
+        }
+      ]
+    },
+    "modified": {
+      "type": "SYMBOL",
+      "name": "unstaged"
+    },
+    "unstaged": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "1"
+        },
+        {
+          "type": "STRING",
+          "value": "."
+        },
+        {
+          "type": "SYMBOL",
+          "name": "statusCode"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "submodule"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "modes"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "hashes"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "path"
+        }
+      ]
+    },
+    "submodule": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "N..."
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_isSubmodule"
+        }
+      ]
+    },
+    "_isSubmodule": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "S"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_modifications"
+        }
+      ]
+    },
+    "_modifications": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "subCommit"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "subTracked"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "subUntracked"
+        }
+      ]
+    },
+    "modes": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "mHEAD"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mIndex"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mWorktree"
+        }
+      ]
+    },
+    "hashes": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "hHEAD"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "hIndex"
         }
       ]
     },
@@ -222,6 +323,46 @@
         }
       ]
     },
+    "hHEAD": {
+      "type": "PATTERN",
+      "value": "[0-9a-f]{5,40}"
+    },
+    "hIndex": {
+      "type": "PATTERN",
+      "value": "[0-9a-f]{5,40}"
+    },
+    "mHEAD": {
+      "type": "PATTERN",
+      "value": "\\d{6}"
+    },
+    "mIndex": {
+      "type": "PATTERN",
+      "value": "\\d{6}"
+    },
+    "mWorktree": {
+      "type": "PATTERN",
+      "value": "\\d{6}"
+    },
+    "octal": {
+      "type": "PATTERN",
+      "value": "\\d{6}"
+    },
+    "subCommit": {
+      "type": "PATTERN",
+      "value": "[.|C]"
+    },
+    "subTracked": {
+      "type": "PATTERN",
+      "value": "[.|M]"
+    },
+    "subUntracked": {
+      "type": "PATTERN",
+      "value": "[.|U]"
+    },
+    "statusCode": {
+      "type": "PATTERN",
+      "value": "[MADRCU]"
+    },
     "path": {
       "type": "PATTERN",
       "value": "[\\.\\/]?[_\\w\\/\\.]+"
@@ -234,21 +375,21 @@
       "type": "PATTERN",
       "value": "\\-\\d+"
     },
-    "branch_name": {
+    "branchName": {
       "type": "PATTERN",
       "value": "\\w+\\.?\\w+"
     },
-    "upstream_branch": {
+    "upBranch": {
       "type": "PATTERN",
       "value": "\\w+\\/\\w+\\.?\\w*"
-    },
-    "identifier": {
-      "type": "PATTERN",
-      "value": "[a-z]+"
     },
     "sha1": {
       "type": "PATTERN",
       "value": "[0-9a-f]{5,40}"
+    },
+    "identifier": {
+      "type": "PATTERN",
+      "value": "[a-z]+"
     }
   },
   "extras": [

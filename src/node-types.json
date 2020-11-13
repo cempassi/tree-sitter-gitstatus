@@ -61,6 +61,35 @@
     }
   },
   {
+    "type": "hHEAD",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "hIndex",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "hashes",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "hHEAD",
+          "named": true
+        },
+        {
+          "type": "hIndex",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "head",
     "named": true,
     "fields": {},
@@ -69,7 +98,7 @@
       "required": false,
       "types": [
         {
-          "type": "branch_name",
+          "type": "branchName",
           "named": true
         }
       ]
@@ -77,21 +106,6 @@
   },
   {
     "type": "header",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "header_type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "header_type",
     "named": true,
     "fields": {},
     "children": {
@@ -121,6 +135,59 @@
     }
   },
   {
+    "type": "mHEAD",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "mIndex",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "mWorktree",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "modes",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "mHEAD",
+          "named": true
+        },
+        {
+          "type": "mIndex",
+          "named": true
+        },
+        {
+          "type": "mWorktree",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "modified",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "unstaged",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "oid",
     "named": true,
     "fields": {},
@@ -134,6 +201,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "sha1",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "source_file",
@@ -167,7 +239,65 @@
           "named": true
         },
         {
+          "type": "modified",
+          "named": true
+        },
+        {
           "type": "untracked",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "submodule",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "subCommit",
+          "named": true
+        },
+        {
+          "type": "subTracked",
+          "named": true
+        },
+        {
+          "type": "subUntracked",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "unstaged",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "hashes",
+          "named": true
+        },
+        {
+          "type": "modes",
+          "named": true
+        },
+        {
+          "type": "path",
+          "named": true
+        },
+        {
+          "type": "statusCode",
+          "named": true
+        },
+        {
+          "type": "submodule",
           "named": true
         }
       ]
@@ -197,7 +327,7 @@
       "required": true,
       "types": [
         {
-          "type": "upstream_branch",
+          "type": "upBranch",
           "named": true
         }
       ]
@@ -228,7 +358,19 @@
     "named": false
   },
   {
+    "type": "1",
+    "named": false
+  },
+  {
     "type": "?",
+    "named": false
+  },
+  {
+    "type": "N...",
+    "named": false
+  },
+  {
+    "type": "S",
     "named": false
   },
   {
@@ -244,11 +386,11 @@
     "named": true
   },
   {
-    "type": "branch",
+    "type": "branch.",
     "named": false
   },
   {
-    "type": "branch_name",
+    "type": "branchName",
     "named": true
   },
   {
@@ -264,15 +406,27 @@
     "named": true
   },
   {
-    "type": "sha1",
+    "type": "statusCode",
+    "named": true
+  },
+  {
+    "type": "subCommit",
+    "named": true
+  },
+  {
+    "type": "subTracked",
+    "named": true
+  },
+  {
+    "type": "subUntracked",
+    "named": true
+  },
+  {
+    "type": "upBranch",
     "named": true
   },
   {
     "type": "upstream",
     "named": false
-  },
-  {
-    "type": "upstream_branch",
-    "named": true
   }
 ]
