@@ -8,6 +8,4 @@ Staged and Unstaged
 
 (source_file
 	(file
-		(staged	(added)) (unstaged (modified)) (submodule) 	(modes (mHEAD) (mIndex) (mWorktree))
-																												(hashes (hHEAD) (hIndex))
-																												(path)))
+		(staged	(added)) (unstaged (modified)) (submodule) 	(modes (mHEAD) (mIndex) (mWorktree)) (hashes (hHEAD) (hIndex)) (path)))
